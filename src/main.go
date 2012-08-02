@@ -6,11 +6,19 @@ import (
   _ "github.com/ziutek/mymysql/thrsafe"
 //  "os"
     "fmt"
+    "time"
 )
+
 
 
 func main() {
   settings := NewSettings()
-  fmt.Printf( "interval=%d\n", settings.settingsUpdateInterval )
+  go SettingsUpdater( &settings )
+  for true {
+    fmt.Printf( "interval    =%d\n", settings.settingsUpdateInterval )
+    fmt.Printf( "loopInterval=%d\n", settings.settingsUpdaterLoopInterval )
+    fmt.Printf( "maxCrawlers =%d\n", settings.maxCrawlerCount )
+    time.Sleep( 1000 * time.Millisecond )
+  }
 }
 
