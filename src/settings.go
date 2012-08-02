@@ -12,7 +12,7 @@ type Settings struct {
 
 
 func NewSettings() (settings Settings) {
-  settings.UpdateInterval = 30 // Update settings every 30 seconds
+  settings.settingsUpdateInterval = 30 // Update settings every 30 seconds
   settings.Load()
   return settings  
 }
