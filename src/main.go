@@ -14,6 +14,7 @@ import (
 func main() {
   settings := NewSettings()
   go SettingsUpdater( &settings )
+  go Queuer( &settings )
   for true {
     fmt.Printf( "interval    =%d\n", settings.settingsUpdateInterval )
     fmt.Printf( "loopInterval=%d\n", settings.settingsUpdaterLoopInterval )

@@ -12,6 +12,7 @@ type Settings struct {
   settingsUpdateInterval      int
   settingsUpdaterLoopInterval int
   maxCrawlerCount             int
+  smallQueueLimit             int
   
 
   lastUpdate                  int64
@@ -34,6 +35,7 @@ func NewSettings() (settings Settings) {
   settings.settingsUpdateInterval = 30      // Update settings every 30 seconds
   settings.settingsUpdaterLoopInterval = 30 // Loop settings old check every 10 seconds
   settings.maxCrawlerCount = 1              // Max crawlers running at the same time
+  settings.smallQueueLimit = 100            // Max crawlers running at the same time
   settings.Load()
   return settings  
 }
@@ -66,6 +68,10 @@ func (s *Settings) Load() {
 
       case "maxCrawlerCount":
         s.maxCrawlerCount = row.Int( valueCol )
+        break
+
+      case "smallQueueLimit":
+        s.smallQueueLimit = row.Int( valueCol )
         break
     }
   }
